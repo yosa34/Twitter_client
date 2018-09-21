@@ -14,7 +14,9 @@
         .then(
         function(json) { // jsonの読み込みに成功した時
             console.log('成功');
-            
+            for(var i in json){
+                $("#output").append("<li>" + json[i].text +"</li>");
+            }
         },
         function() { //jsonの読み込みに失敗した時
             console.log('失敗');
@@ -25,6 +27,6 @@
 
 </head>
 <body>
-    
+        <ul id="output"></ul>
 </body>
 </html>
