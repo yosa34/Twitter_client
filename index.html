@@ -2,9 +2,13 @@
 <html>
 <head>
 <title></title>
+<link rel="stylesheet" href="./style.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+//============================================================================================
+//JSONデータの読み込みと出力
+//============================================================================================
  $(function(){
     $.ajax({ // json読み込み開始
         type: 'GET',
@@ -14,8 +18,15 @@
         .then(
         function(json) { // jsonの読み込みに成功した時
             console.log('成功');
-            for(var i in json){
-                $("#output").append("<li>" + json[i].text +"</li>");
+            for(let i in json){
+                $("#output").append("<li>"+ json[i].text +"</li>");
+                if(json[i].user_mentions.length === 0){//独り言
+                    if(json[i].retweeted_status !== undefined){//RT
+                        
+                    }
+                }else if(json[i].user_mentions.lemgth > 0){//リプ
+                    
+                } 
             }
         },
         function() { //jsonの読み込みに失敗した時
@@ -23,10 +34,24 @@
         }
     );
 });
+//============================================================================================
+//メニューバー
+//============================================================================================
+$(function(){
+
+
+
+});
+
+
+
+
 </script>
 
 </head>
 <body>
+        <header></header>
+        <div class="hed"> タイムライン </div>
         <ul id="output"></ul>
 </body>
 </html>
