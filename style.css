@@ -12,9 +12,31 @@ header{
     height    : 50px;
     width     : 100%;
 }
-.hed{
-    background: #2f2f5a;
+.button_box{
+    height    : 100px;
+    width     : 70%;
+    background: #ccc;
     margin    : 40px auto 0px;
+    display   : flex;
+}
+.button{
+    background: #2f2f5a;
+    color     : #ccccff;
+    width     : 50%;
+    height    : 100px;
+    margin    : 0 auto;
+    text-align: center;
+    line-height: 100px;
+}
+#tl{
+    border-right:  solid 5px #ccccff;
+}
+#rt{
+    border-left:  solid 5px #ccccff;
+}
+p{
+    background: #2f2f5a;
+    margin    : 0px auto;
     width     : 70%;
     height    : 50px;
     color     : #fff;
