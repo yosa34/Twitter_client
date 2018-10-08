@@ -4,16 +4,16 @@
 $(function(){
     $.ajax({ // json読み込み開始
         type: 'GET',
-        url: 'http://150.95.181.32/fopen/twitter/api/home_timeline',
+        url: 'http://150.95.181.32/fopen/sarvant/1.0/home_timeline',
         dataType: 'json'
         }).then(
         function(json) { // jsonの読み込みに成功した時
             console.log('成功');
             for(let i in json){
                 if(json[i].entities.user_mentions.length === 0){//独り言
-                    $("#tweet").append("<li>"+ json[i].text +"</li>");
+                    $("#tweet").append("<li><div class='tweet_text'>"+json[i].text+"</div><div>↪</div><div class='retweet'>RT"+json[i].retweet_count+"</div><div>♡"+json[i].favorite_count+"</div></li>");
                 }else if(json[i].retweeted_status !== undefined){//RT
-                    $("#re_tweet").append("<li>"+ json[i].text +"</li>");
+                    $("#re_tweet").append("<li><div class='tweet_text'>"+json[i].text+"</div><div>↪</div><div class='retweet'>RT"+json[i].retweet_count+"</div><div>♡"+json[i].favorite_count+"</div></li>");
                 }
             }
         },
