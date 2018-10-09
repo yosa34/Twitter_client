@@ -3,18 +3,21 @@
 //============================================================================================
 $(function(){
     $.ajax({ // json読み込み開始
-        type: 'GET',
-        url: 'http://150.95.181.32/fopen/sarvant/1.0/home_timeline',
-        dataType: 'json',
+        type     : 'GET',
+        url      : 'http://150.95.181.32/fopen/sarvant/1.0/home_timeline',
+        dataType : 'json',
         }).then(
         function(json) { // jsonの読み込みに成功した時
 
             console.log('成功');
             for(let i in json){
                 if(json[i].entities.user_mentions.length === 0){//独り言
-                    $("#tweet").append("<li><div class='tweet_text'>"+json[i].text+"</div><div>↪</div><div class='retweet'>RT"+json[i].retweet_count+"</div><div>♡"+json[i].favorite_count+"</div></li>");
+                    $("#tweet").append("<li><div class='tweet_text'>" + json[i].text + "</div><div>↪</div><div class='retweet'>RT"
+                                       + json[i].retweet_count + "</div><div>♡" + json[i].favorite_count + "</div></li>");
+                
                 }else if(json[i].retweeted_status !== undefined){//RT
-                    $("#re_tweet").append("<li><div class='tweet_text'>"+json[i].text+"</div><div>↪</div><div class='retweet'>RT"+json[i].retweet_count+"</div><div>♡"+json[i].favorite_count+"</div></li>");
+                    $("#re_tweet").append("<li><div class='tweet_text'>" + json[i].text + "</div><div>↪</div><div class='retweet'>RT"
+                                           + json[i].retweet_count + "</div><div>♡" + json[i].favorite_count + "</div></li>");
                 }
             }
         },
@@ -50,23 +53,16 @@ $('#rt').click(function() {
 //============================================================================================
 //ツイート場所
 //============================================================================================
-
-    $('form').submit(function(){
-        var data = $('form').serializeArray();
-        data = parseJson(data);
-            $.ajax({
-                type:          'post',
-                dataType:      'json',
-                contentType:   'http://150.95.181.32/fopen/sarvant/1.0/tweet',
-                scriptCharset: 'utf-8',
-                data:          JSON.stringify(data)
-            });
+$(function(){
+    $('#btn').click(
+    function(){
+        $.ajax({
+            type            : 'post',
+            dataType        : 'json',
+            contentType     : 'application/json',
+            scriptCharset   : 'utf-8',
+            url             : 'http://150.95.181.32/fopen/sarvant/1.0/tweet',
+            data            : JSON.stringify({"status":"js_tweet_test"})
         });
-        
-        var parseJson = function(data) {
-        var returnJson = {};
-        for (idx = 0; idx < data.length; idx++) {
-            returnJson[data[idx].name] = data[idx].value
-        }
-        return returnJson;
-        }    
+    });
+});
