@@ -1,6 +1,8 @@
-body{
+*{
     margin    : 0px;
     padding   : 0px;
+}
+body{
     font-size : 20px;
     background: #ccccff;
     background-repeat: no-repeat;
@@ -9,8 +11,16 @@ body{
 }
 header{
     background: #2f2f5a;
-    height    : 50px;
+    color     : #ccccff;
     width     : 100%;
+}
+header>.tweet_box{
+    text-align: center;
+}
+#tweet_text{
+    width      : 500px;
+    height     : 150px;
+    margin     : 20px; 
 }
 .button_box{
     height    : 100px;
