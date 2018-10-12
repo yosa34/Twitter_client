@@ -51,22 +51,16 @@ $('#rt').click(function() {
 //ツイート場所
 //============================================================================================
 
-    $('form').submit(function(){
-        var data = $('form').serializeArray();
-        data = parseJson(data);
-            $.ajax({
-                type:          'post',
-                dataType:      'json',
-                contentType:   'http://150.95.181.32/fopen/sarvant/1.0/tweet',
-                scriptCharset: 'utf-8',
-                data:          JSON.stringify(data)
-            });
+$(function(){
+    $('#btn').click(
+        function(){
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    scriptCharset: 'utf-8',
+                    url: 'http://150.95.181.32/fopen/sarvant/1.0/tweet',
+                    data: JSON.stringify({"status":document.forms[0].status[0].value})
+                });
         });
-        
-        var parseJson = function(data) {
-        var returnJson = {};
-        for (idx = 0; idx < data.length; idx++) {
-            returnJson[data[idx].name] = data[idx].value
-        }
-        return returnJson;
-        }    
+});
